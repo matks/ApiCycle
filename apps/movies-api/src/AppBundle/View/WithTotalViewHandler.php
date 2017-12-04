@@ -2,6 +2,7 @@
 
 namespace ApiCycle\ApiMovies\AppBundle\View;
 
+use ApiCycle\ApiMovies\AppBundle\Controller\DTO\MoviesViewDTO;
 use ApiCycle\Domain\PaginatedCollection;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler;
@@ -30,9 +31,9 @@ class WithTotalViewHandler
 
     /**
      * @param ViewHandler $viewHandler
-     * @param View        $view
-     * @param Request     $request
-     * @param string      $format
+     * @param View $view
+     * @param Request $request
+     * @param string $format
      *
      * @return JsonResponse
      */
@@ -43,13 +44,14 @@ class WithTotalViewHandler
         /** @var PaginatedCollection $paginatedCollection */
         $paginatedCollection = $view->getData();
 
-        $data = [
-            'total' => $paginatedCollection->total,
-            'count' => $paginatedCollection->count,
-            'data' => $paginatedCollection->items,
-        ];
+        $viewDTO = new MoviesViewDTO(
+            $paginatedCollection->total,
+            $paginatedCollection->count,
+            $paginatedCollection->items
+        );
+
         $movieGroup = $this->getMovieSerializationGroup($view->getContext()->getGroups());
-        $json = $this->serializer->serialize($data, 'json', $movieGroup);
+        $json = $this->serializer->serialize($viewDTO, 'json', $movieGroup);
 
         return new JsonResponse($json, 200, $view->getHeaders(), true);
     }

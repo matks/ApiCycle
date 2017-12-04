@@ -44,8 +44,8 @@ class MoviesControllerTest extends BaseController
         $response1 = $client->getResponse();
 
         $expectedData1 = [
-            'error' => 'Bad query',
             'message' => 'Only allowed value for order is \'name\'',
+            'error' => 'Bad query',
         ];
 
         $this->assertJsonResponse($response1, Response::HTTP_BAD_REQUEST);
@@ -55,8 +55,8 @@ class MoviesControllerTest extends BaseController
         $response2 = $client->getResponse();
 
         $expectedData2 = [
-            'error' => 'Bad query',
             'message' => 'Dir must be one of those: asc, desc',
+            'error' => 'Bad query',
         ];
 
         $this->assertJsonResponse($response2, Response::HTTP_BAD_REQUEST);
@@ -165,8 +165,8 @@ class MoviesControllerTest extends BaseController
         $response1 = $client->getResponse();
 
         $expectedData1 = [
-            'error' => 'Bad query',
             'message' => 'name : This value should not be blank.',
+            'error' => 'Bad query',
         ];
 
         $this->assertJsonResponse($response1, Response::HTTP_BAD_REQUEST);
@@ -182,8 +182,8 @@ class MoviesControllerTest extends BaseController
         $response1 = $client->getResponse();
 
         $expectedData1 = [
-            'error' => 'Bad query',
             'message' => 'name : This value is already used.',
+            'error' => 'Bad query',
         ];
 
         $this->assertJsonResponse($response1, Response::HTTP_BAD_REQUEST);

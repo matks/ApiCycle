@@ -17,4 +17,4 @@ monolog:
 fos_rest:
     exception:
         enabled: true
-        exception_controller: 'AppBundle\Controller\ExceptionController::handleException'
+        exception_controller: 'ApiCycle\ApiMovies\AppBundle\Controller\ExceptionController::handleException'

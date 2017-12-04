@@ -6,3 +6,11 @@ movies:
     type:   rest
     resource:   ApiCycle\ApiMovies\AppBundle\Controller\MoviesController
     prefix: /v1
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+nelmio_api_swagger:
+    resource: "@NelmioApiDocBundle/Resources/config/swagger_routing.yml"
+    prefix: /api-docs

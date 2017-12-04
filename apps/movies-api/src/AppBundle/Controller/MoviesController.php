@@ -2,11 +2,13 @@
 
 namespace ApiCycle\ApiMovies\AppBundle\Controller;
 
+use ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse;
 use ApiCycle\Domain\MoviesManager;
 use ApiCycle\Domain\Movie;
 use ApiCycle\Domain\MovieRepository;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,20 @@ class MoviesController extends FOSRestController
      * @param Request $request
      *
      * @return \FOS\RestBundle\View\View
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Get all movies",
+     *  filters={
+     *      {"name"="order", "dataType"="string"},
+     *      {"name"="dir", "dataType"="string", "pattern"="asc|desc"},
+     *      {"name"="page", "dataType"="integer"}
+     *  },
+     *  output="ApiCycle\ApiMovies\AppBundle\Controller\DTO\MoviesViewDTO",
+     *  statusCodes={
+     *         200="Successfull query",
+     *  }
+     * )
      */
     public function getMoviesAction(Request $request)
     {
@@ -36,13 +52,28 @@ class MoviesController extends FOSRestController
         return $view;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     *
+     * @ApiDoc(
+     *  description="Create a new movie",
+     *  input="ApiCycle\ApiMovies\AppBundle\Controller\DTO\MovieDTO",
+     *  output="ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse",
+     *  statusCodes={
+     *         200="Successfull creation",
+     *         400="Bad query"
+     *  }
+     * )
+     */
     public function postMovieAction(Request $request)
     {
         $name = $request->get('name');
 
         $movie = $this->getMoviesManager()->registerMovie($name);
 
-        return new JsonResponse('ok', Response::HTTP_OK);
+        return new JsonResponse(new SuccessResponse(), Response::HTTP_OK);
     }
 
     /**
@@ -51,6 +82,15 @@ class MoviesController extends FOSRestController
      * @return JsonResponse
      *
      * @throws \Exception
+     *
+     * @ApiDoc(
+     *  description="Delete a movie",
+     *  output="ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse",
+     *  statusCodes={
+     *         204="Successfull deletion",
+     *         400="Bad query"
+     *  }
+     * )
      */
     public function deleteMovieAction($movieId)
     {
@@ -66,7 +106,7 @@ class MoviesController extends FOSRestController
             throw new \Exception(sprintf('Failed to delete movie %d', $movieId));
         }
 
-        return new JsonResponse('ok', Response::HTTP_NO_CONTENT);
+        return new JsonResponse(new SuccessResponse(), Response::HTTP_NO_CONTENT);
     }
 
     /**

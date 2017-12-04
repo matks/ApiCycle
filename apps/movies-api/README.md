@@ -3,10 +3,10 @@ ApiCycle - Movies Api
 
 # Install
 
-Install dependencies with composer binary:
+Use makefile
 
 ```
-$ php composer.phar install
+$ make build
 ```
 
 Configure `app/config/parameters.yml` to enable access to your database
@@ -14,13 +14,12 @@ Configure `app/config/parameters.yml` to enable access to your database
 Then create schema and load fixtures:
 
 ```
-$ php app/console doctrine:schema:create
-$ php app/console doctrine:fixtures:load
+$ make load_fixtures
 ```
 
 Check your install is correct by running the following command:
 ```
-$ php app/console server:run
+$ php bin/console server:run
 ```
 
 This will start a php webserver, you should now be able to browse http://127.0.0.1:8000/ .
@@ -33,4 +32,10 @@ Run Symfony functional tests using phpunit binary:
 
 ```
 $  vendor/bin/phpunit
+```
+
+# Swagger
+
+```
+$ make build_swagger
 ```

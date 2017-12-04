@@ -2,6 +2,8 @@
 
 namespace ApiCycle\ApiMovies\AppBundle\Controller;
 
+use ApiCycle\ApiMovies\AppBundle\Controller\DTO\BadQueryResponse;
+use ApiCycle\ApiMovies\AppBundle\Controller\DTO\BadResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,19 +24,16 @@ class ExceptionController extends Controller
             case $exception instanceof \InvalidArgumentException:
                 $message = $exception->getMessage();
 
-                $data = [
-                    'error' => 'Bad query',
-                    'message' => $message,
-                ];
+                $responseBody = new BadQueryResponse('Bad query', $message);
 
-                return new JsonResponse($data, Response::HTTP_BAD_REQUEST);
+                return new JsonResponse($responseBody, Response::HTTP_BAD_REQUEST);
                 break;
 
             case $exception instanceof NotFoundHttpException:
-                return new JsonResponse('Unknown endpoint', Response::HTTP_NOT_FOUND);
+                return new JsonResponse(new BadResponse('Unknown endpoint'), Response::HTTP_NOT_FOUND);
 
             default:
-                return new JsonResponse('An error has happened', Response::HTTP_BAD_REQUEST);
+                return new JsonResponse(new BadResponse('An error has happened'), Response::HTTP_BAD_REQUEST);
         }
     }
 }

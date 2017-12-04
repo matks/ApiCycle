@@ -53,7 +53,6 @@ doctrine:
                 prefix: 'ApiCycle\Domain'
                 alias: Domain
 
-# Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
@@ -75,3 +74,7 @@ fos_rest:
         default_engine: twig
     routing_loader:
         default_format: api_movies_format
+        include_format: false
+
+nelmio_api_doc:
+  name: Movies API
