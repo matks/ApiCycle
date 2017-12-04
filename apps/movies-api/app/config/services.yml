@@ -1,0 +1,14 @@
+services:
+
+    app.json_view_handler:
+        class: ApiCycle\ApiMovies\AppBundle\View\WithTotalViewHandler
+        arguments: ['@jms_serializer']
+
+    app.view_handler:
+        parent: 'fos_rest.view_handler.default'
+        calls:
+            - ['registerHandler', [ 'api_movies_format', [ '@app.json_view_handler', 'createResponse'] ] ]
+
+    app.movies_manager:
+        class: ApiCycle\Domain\MoviesManager
+        arguments: ['@doctrine', '@validator']

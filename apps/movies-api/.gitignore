@@ -1,0 +1,8 @@
+# MacOSX
+.idea
+
+# Symfony
+app/config/parameters.yml
+bin
+vendor/
+var/

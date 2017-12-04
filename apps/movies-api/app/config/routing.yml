@@ -1,0 +1,8 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+movies:
+    type:   rest
+    resource:   ApiCycle\ApiMovies\AppBundle\Controller\MoviesController
+    prefix: /v1
