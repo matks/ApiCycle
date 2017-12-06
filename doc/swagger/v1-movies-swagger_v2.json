@@ -1,0 +1,158 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "127.0.0.1:8000",
+    "version": "1.0"
+  },
+  "host": "127.0.0.1:8000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/v1/movies": {
+      "get": {
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dir",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull query",
+            "schema": {
+              "$ref": "#/definitions/MoviesViewDTO"
+            }
+          }
+        },
+        "operationId": "get_v1-movies",
+        "summary": "Get all movies"
+      },
+      "post": {
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull creation",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Bad query"
+          }
+        },
+        "operationId": "post_v1-movies",
+        "summary": "Create a new movie"
+      }
+    },
+    "/v1/movies/{movieId}": {
+      "delete": {
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "movieId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "See standard HTTP status code reason for 200",
+            "schema": {
+              "$ref": "#/definitions/SuccessResponse"
+            }
+          },
+          "204": {
+            "description": "Successfull deletion"
+          },
+          "400": {
+            "description": "Bad query"
+          }
+        },
+        "operationId": "delete_v1-movies",
+        "summary": "Delete a movie"
+      }
+    }
+  },
+  "definitions": {
+    "Movie": {
+      "description": "array of objects (Movie)",
+      "properties": {
+        "created_at": {
+          "description": "DateTime",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "integer",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "string",
+          "type": "string"
+        },
+        "status": {
+          "description": "string",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "MoviesViewDTO": {
+      "properties": {
+        "count": {
+          "description": "integer",
+          "format": "int32",
+          "type": "integer"
+        },
+        "data": {
+          "description": "array of objects (Movie)",
+          "items": {
+            "$ref": "#/definitions/Movie"
+          },
+          "type": "array"
+        },
+        "total": {
+          "description": "integer",
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "SuccessResponse": {
+      "properties": {
+        "status": {
+          "description": "string",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

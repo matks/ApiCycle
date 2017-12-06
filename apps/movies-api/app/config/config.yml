@@ -77,4 +77,12 @@ fos_rest:
         include_format: false
 
 nelmio_api_doc:
-  name: Movies API
+    name: 'Movies API'
+    swagger:
+        api_base_path: ''
+        model_naming_strategy: 'last_segment_only'
+        swagger_version:      '1.2'
+        api_version:          '1.0'
+        info:
+            title:                'Movies API'
+            description:          'Movies API'

@@ -1,0 +1,5 @@
+vendor/*
+
+app/parameters.yml
+.htaccess
+composer.phar

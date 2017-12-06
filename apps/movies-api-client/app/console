@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+$app = require_once __DIR__.'/bootstrap.php';
+
+use ApiCycle\ApiMoviesTest\TestApiClientCommand;
+
+$application = $app['console'];
+$application->add(new TestApiClientCommand());
+
+$application->run();
+
+?>
