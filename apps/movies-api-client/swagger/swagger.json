@@ -1,0 +1,171 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Movies API",
+        "version": "1.0"
+    },
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/movies": {
+            "get": {
+                "summary": "Get movies",
+                "description": "Get movies",
+                "operationId": "getMovies",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Order criterion",
+                        "type": "string"
+                    },
+                    {
+                        "name": "dir",
+                        "in": "query",
+                        "description": "Sort criterion",
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/MoviesViewDTO"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a movie",
+                "description": "Create a movie",
+                "operationId": "createMovie",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "required": [
+                                "name"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad query",
+                        "schema": {
+                            "$ref": "#/definitions/BadQueryResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/movies/{id}": {
+            "delete": {
+                "summary": "Delete a movie",
+                "description": "Delete a movie",
+                "operationId": "deleteMovie",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/EmptyResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad query",
+                        "schema": {
+                            "$ref": "#/definitions/BadQueryResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "BadQueryResponse": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "BadResponse": {
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "EmptyResponse": {},
+        "MovieDTO": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "MoviesViewDTO": {
+            "properties": {
+                "total": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        },
+        "SuccessResponse": {
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

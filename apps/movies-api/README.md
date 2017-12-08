@@ -1,6 +1,8 @@
 ApiCycle - Movies Api
 =====================
 
+Symfony API to handle movies CRUD
+
 # Install
 
 Use makefile
@@ -36,6 +38,10 @@ $  vendor/bin/phpunit
 
 # Swagger
 
+Export Swagger v2 definition using swagger-php binary:
+
 ```
 $ make build_swagger
 ```
+
+The JSON output is put into `apps/movies-api-client/swagger/swagger.json`.

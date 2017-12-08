@@ -3,15 +3,16 @@
 namespace ApiCycle\ApiMovies\AppBundle\Controller;
 
 use ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse;
+use ApiCycle\ApiMovies\AppBundle\Controller\DTO\EmptyResponse;
 use ApiCycle\Domain\MoviesManager;
 use ApiCycle\Domain\Movie;
 use ApiCycle\Domain\MovieRepository;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Swagger\Annotations as SWG;
 
 class MoviesController extends FOSRestController
 {
@@ -20,18 +21,35 @@ class MoviesController extends FOSRestController
      *
      * @return \FOS\RestBundle\View\View
      *
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Get all movies",
-     *  filters={
-     *      {"name"="order", "dataType"="string"},
-     *      {"name"="dir", "dataType"="string", "pattern"="asc|desc"},
-     *      {"name"="page", "dataType"="integer"}
-     *  },
-     *  output="ApiCycle\ApiMovies\AppBundle\Controller\DTO\MoviesViewDTO",
-     *  statusCodes={
-     *         200="Successfull query",
-     *  }
+     * @SWG\Get(
+     *     path="/movies",
+     *     summary="Get movies",
+     *     description="Get movies",
+     *     operationId="getMovies",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="order",
+     *         in="query",
+     *         description="Order criterion",
+     *         type="string",
+     *     ),
+     *     @SWG\Parameter(
+     *         name="dir",
+     *         in="query",
+     *         description="Sort criterion",
+     *         type="string",
+     *     ),
+     *     @SWG\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="Page number",
+     *         type="integer",
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Success",
+     *         @SWG\Schema(ref="#/definitions/MoviesViewDTO"),
+     *     )
      * )
      */
     public function getMoviesAction(Request $request)
@@ -57,14 +75,32 @@ class MoviesController extends FOSRestController
      *
      * @return JsonResponse
      *
-     * @ApiDoc(
-     *  description="Create a new movie",
-     *  input="ApiCycle\ApiMovies\AppBundle\Controller\DTO\MovieDTO",
-     *  output="ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse",
-     *  statusCodes={
-     *         200="Successfull creation",
-     *         400="Bad query"
-     *  }
+     * @SWG\Post(
+     *     path="/movies",
+     *     summary="Create a movie",
+     *     description="Create a movie",
+     *     operationId="createMovie",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="data",
+     *         in="body",
+     *         required=true,
+     *         type="object",
+     *         @SWG\Schema(
+     *             required={"name"},
+     *             @SWG\Property(property="name", type="string"),
+     *         ),
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Success",
+     *         @SWG\Schema(ref="#/definitions/SuccessResponse"),
+     *     ),
+     *     @SWG\Response(
+     *         response=400,
+     *         description="Bad query",
+     *         @SWG\Schema(ref="#/definitions/BadQueryResponse"),
+     *     )
      * )
      */
     public function postMovieAction(Request $request)
@@ -83,13 +119,28 @@ class MoviesController extends FOSRestController
      *
      * @throws \Exception
      *
-     * @ApiDoc(
-     *  description="Delete a movie",
-     *  output="ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse",
-     *  statusCodes={
-     *         204="Successfull deletion",
-     *         400="Bad query"
-     *  }
+     * @SWG\Delete(
+     *     path="/movies/{id}",
+     *     summary="Delete a movie",
+     *     description="Delete a movie",
+     *     operationId="deleteMovie",
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         type="integer"
+     *     ),
+     *     @SWG\Response(
+     *         response=204,
+     *         description="Success",
+     *         @SWG\Schema(ref="#/definitions/EmptyResponse"),
+     *     ),
+     *     @SWG\Response(
+     *         response=400,
+     *         description="Bad query",
+     *         @SWG\Schema(ref="#/definitions/BadQueryResponse"),
+     *     )
      * )
      */
     public function deleteMovieAction($movieId)
@@ -100,13 +151,17 @@ class MoviesController extends FOSRestController
         /** @var Movie $movie */
         $movie = $movieRepository->findOneById($movieId);
 
+        if (null === $movie) {
+            throw new \InvalidArgumentException(sprintf("Cannot find movie %d", $movieId));
+        }
+
         $result = $manager->deleteMovie($movie);
 
         if (false === $result) {
             throw new \Exception(sprintf('Failed to delete movie %d', $movieId));
         }
 
-        return new JsonResponse(new SuccessResponse(), Response::HTTP_NO_CONTENT);
+        return new JsonResponse(new EmptyResponse(), Response::HTTP_NO_CONTENT);
     }
 
     /**

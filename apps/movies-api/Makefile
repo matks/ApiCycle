@@ -2,6 +2,7 @@ PHP ?= php
 ENV ?= dev
 SFY_ANSI ?= --ansi
 APP_CONSOLE = $(PHP) bin/console $(SFY_ANSI)
+SWAGGER = vendor/bin/swagger
 
 .DEFAULT_GOAL := help
 
@@ -28,4 +29,4 @@ load_fixtures: ## load fixtures
 	$(APP_CONSOLE) doctrine:fixtures:load
 
 build_swagger: ## build swagger files
-	$(APP_CONSOLE) api:swagger:dump ../../doc/swagger/
+	$(SWAGGER) --exclude vendor --output ../movies-api-client/swagger/swagger.json

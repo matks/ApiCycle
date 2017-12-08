@@ -17,4 +17,4 @@ else
 endif
 
 generate_api_client: ## generate API Client classes
-	$(JANE) generate
+	$(JANE) generate swagger/swagger.json 'ApiCycle\Generated\ApiMoviesClient' generated/

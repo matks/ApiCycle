@@ -1,7 +1,0 @@
-<?php
-
-return [
-    'openapi-file' => __DIR__ . '/../../doc/swagger/v1-movies-swagger_v2-clean.json',
-    'namespace' => 'ApiCycle\Generated\ApiMoviesClient',
-    'directory' => __DIR__ . '/generated',
-];

@@ -69,7 +69,6 @@ $app['app.api.serializer'] = function ($app) use ($configuration) {
                 new JsonEncode(),
                 new JsonDecode()
             ),
-            new RawEncoder()
         ]
     );
 

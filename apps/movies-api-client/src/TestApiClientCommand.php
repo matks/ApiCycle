@@ -2,9 +2,9 @@
 
 namespace ApiCycle\ApiMoviesTest;
 
+use ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody;
 use ApiCycle\Generated\ApiMoviesClient\Resource\DefaultResource;
 use Knp\Command\Command;
-use ApiCycle\Generated\ApiMoviesClient\Resource\V1MoviesResource;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -23,8 +23,19 @@ class TestApiClientCommand extends Command
         /** @var DefaultResource $resource */
         $resource = $app['app.api.api-client'];
 
-        $response = $resource->getV1Movies();
+        $response = $resource->getMovies();
 
-        var_dump((string)$response->getBody());
+        // var_dump($response);
+
+        /*
+        $body = new MoviesBody();
+        $body->setName('A new movie 2');
+
+        $response = $resource->createMovie($body);
+        */
+
+        //$response = $resource->deleteMovie(27);
+
+        var_dump($response);
     }
 }

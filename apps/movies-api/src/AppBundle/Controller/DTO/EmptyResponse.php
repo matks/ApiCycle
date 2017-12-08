@@ -10,15 +10,6 @@ use Swagger\Annotations as SWG;
  *
  * @SWG\Definition()
  */
-class MovieDTO
+class EmptyResponse
 {
-    /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\Expose
-     *
-     * @SWG\Property()
-     */
-    public $name;
 }

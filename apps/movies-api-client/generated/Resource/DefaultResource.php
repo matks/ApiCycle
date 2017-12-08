@@ -7,18 +7,18 @@ use Joli\Jane\OpenApi\Runtime\Client\Resource;
 class DefaultResource extends Resource
 {
     /**
-     * 
+     * Get movies
      *
      * @param array  $parameters {
-     *     @var string $order 
-     *     @var string $dir 
-     *     @var int $page 
+     *     @var string $order Order criterion
+     *     @var string $dir Sort criterion
+     *     @var int $page Page number
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface|\ApiCycle\Generated\ApiMoviesClient\Model\MoviesViewDTO
      */
-    public function getV1Movies($parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function getMovies($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $queryParam->setDefault('order', NULL);
@@ -26,7 +26,7 @@ class DefaultResource extends Resource
         $queryParam->setDefault('page', NULL);
         $url = '/v1/movies';
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
-        $headers = array_merge(array('Host' => 'localhost'), $queryParam->buildHeaders($parameters));
+        $headers = array_merge(array('Host' => 'localhost', 'Accept' => array('application/json')), $queryParam->buildHeaders($parameters));
         $body = $queryParam->buildFormDataString($parameters);
         $request = $this->messageFactory->createRequest('GET', $url, $headers, $body);
         $promise = $this->httpClient->sendAsyncRequest($request);
@@ -34,51 +34,61 @@ class DefaultResource extends Resource
             return $promise;
         }
         $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'ApiCycle\\Generated\\ApiMoviesClient\\Model\\MoviesViewDTO', 'json');
+            }
+        }
         return $response;
     }
     /**
-     * 
+     * Create a movie
      *
-     * @param array  $parameters {
-     *     @var string $name 
-     * }
+     * @param \ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody $data 
+     * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface|\ApiCycle\Generated\ApiMoviesClient\Model\SuccessResponse|\ApiCycle\Generated\ApiMoviesClient\Model\BadQueryResponse
      */
-    public function postV1Movies($parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createMovie(\ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody $data, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
-        $queryParam->setDefault('name', NULL);
-        $queryParam->setFormParameters(array('name'));
         $url = '/v1/movies';
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
-        $headers = array_merge(array('Host' => 'localhost'), $queryParam->buildHeaders($parameters));
-        $body = $queryParam->buildFormDataString($parameters);
+        $headers = array_merge(array('Host' => 'localhost', 'Accept' => array('application/json'), 'Content-Type' => 'application/json'), $queryParam->buildHeaders($parameters));
+        $body = $this->serializer->serialize($data, 'json');
         $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
         $promise = $this->httpClient->sendAsyncRequest($request);
         if (self::FETCH_PROMISE === $fetch) {
             return $promise;
         }
         $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'ApiCycle\\Generated\\ApiMoviesClient\\Model\\SuccessResponse', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'ApiCycle\\Generated\\ApiMoviesClient\\Model\\BadQueryResponse', 'json');
+            }
+        }
         return $response;
     }
     /**
-     * 
+     * Delete a movie
      *
-     * @param string $movieId 
+     * @param int $id 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface|null|\ApiCycle\Generated\ApiMoviesClient\Model\BadQueryResponse
      */
-    public function deleteV1Movies($movieId, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function deleteMovie($id, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
-        $url = '/v1/movies/{movieId}';
-        $url = str_replace('{movieId}', urlencode($movieId), $url);
+        $url = '/v1/movies/{id}';
+        $url = str_replace('{id}', urlencode($id), $url);
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
-        $headers = array_merge(array('Host' => 'localhost'), $queryParam->buildHeaders($parameters));
+        $headers = array_merge(array('Host' => 'localhost', 'Accept' => array('application/json')), $queryParam->buildHeaders($parameters));
         $body = $queryParam->buildFormDataString($parameters);
         $request = $this->messageFactory->createRequest('DELETE', $url, $headers, $body);
         $promise = $this->httpClient->sendAsyncRequest($request);
@@ -86,6 +96,14 @@ class DefaultResource extends Resource
             return $promise;
         }
         $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('204' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('400' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'ApiCycle\\Generated\\ApiMoviesClient\\Model\\BadQueryResponse', 'json');
+            }
+        }
         return $response;
     }
 }

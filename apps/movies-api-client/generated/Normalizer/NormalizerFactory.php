@@ -7,7 +7,13 @@ class NormalizerFactory
     public static function create()
     {
         $normalizers = array();
-        $normalizers[] = new \Joli\Jane\Runtime\Normalizer\ArrayDenormalizer();
+        $normalizers[] = new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer();
+        $normalizers[] = new BadQueryResponseNormalizer();
+        $normalizers[] = new BadResponseNormalizer();
+        $normalizers[] = new MovieDTONormalizer();
+        $normalizers[] = new MoviesViewDTONormalizer();
+        $normalizers[] = new SuccessResponseNormalizer();
+        $normalizers[] = new MoviesBodyNormalizer();
         return $normalizers;
     }
 }

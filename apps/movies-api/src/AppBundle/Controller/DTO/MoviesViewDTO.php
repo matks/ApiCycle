@@ -3,9 +3,12 @@
 namespace ApiCycle\ApiMovies\AppBundle\Controller\DTO;
 
 use JMS\Serializer\Annotation as Serializer;
+use Swagger\Annotations as SWG;
 
 /**
  * @Serializer\ExclusionPolicy("all")
+ *
+ * @SWG\Definition()
  */
 class MoviesViewDTO
 {
@@ -15,6 +18,8 @@ class MoviesViewDTO
      * @Serializer\Type("integer")
      * @Serializer\Expose
      * @Serializer\Groups({"movie", "all"})
+     *
+     * @SWG\Property()
      */
     public $total;
 
@@ -24,6 +29,8 @@ class MoviesViewDTO
      * @Serializer\Type("integer")
      * @Serializer\Expose
      * @Serializer\Groups({"movie", "all"})
+     *
+     * @SWG\Property()
      */
     public $count;
 
@@ -33,6 +40,8 @@ class MoviesViewDTO
      * @Serializer\Type("array<ApiCycle\Domain\Movie>")
      * @Serializer\Expose
      * @Serializer\Groups({"movie", "all"})
+     *
+     * @SWG\Property()
      */
     public $data;
 

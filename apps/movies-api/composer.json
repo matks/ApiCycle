@@ -38,7 +38,7 @@
         "symfony/phpunit-bridge": "^3.0",
         "phpunit/phpunit": "^5.0",
         "liip/functional-test-bundle": "^1.8",
-        "nelmio/api-doc-bundle": "^2.13"
+        "zircote/swagger-php": "^2.0"
     },
     "scripts": {
         "symfony-scripts": [
