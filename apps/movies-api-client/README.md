@@ -17,7 +17,11 @@ Configure `app/config/parameters.yml` to enable access to your database
 
 ## Functional tests
 
-TODO
+Generate behat test suite:
+
+```
+$ make tests_behat
+```
 
 # Api Client
 

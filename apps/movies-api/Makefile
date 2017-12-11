@@ -24,9 +24,12 @@ build: ## builds the application
 	$(APP_CONSOLE) cache:clear --env=$(ENV)
 
 load_fixtures: ## load fixtures
-	@echo $(ENV)
 	$(APP_CONSOLE) doctrine:schema:create
-	$(APP_CONSOLE) doctrine:fixtures:load
+	$(APP_CONSOLE) doctrine:fixtures:load --no-interaction
+
+reset_fixtures: ## load fixtures after cleaning the database
+	$(APP_CONSOLE) doctrine:schema:drop --force --no-interaction
+	$(MAKE) load_fixtures
 
 build_swagger: ## build swagger files
 	$(SWAGGER) --exclude vendor --output ../movies-api-client/swagger/swagger.json

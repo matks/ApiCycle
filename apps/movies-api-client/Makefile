@@ -1,6 +1,7 @@
 PHP ?= php
 ENV ?= dev
 JANE ?= vendor/bin/jane-openapi
+BEHAT ?= vendor/bin/behat
 
 .DEFAULT_GOAL := help
 
@@ -18,3 +19,10 @@ endif
 
 generate_api_client: ## generate API Client classes
 	$(JANE) generate swagger/swagger.json 'ApiCycle\Generated\ApiMoviesClient' generated/
+
+tests_behat: ## perform behat functional tests
+	$(MAKE) reset_remote_fixtures
+	$(BEHAT)
+
+reset_remote_fixtures: ## reset Movies API fixtures in movies-api project
+	$(MAKE) -C ../movies-api reset_fixtures
