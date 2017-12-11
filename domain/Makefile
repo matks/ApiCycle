@@ -1,8 +1,5 @@
 PHP ?= php
 ENV ?= dev
-SFY_ANSI ?= --ansi
-APP_CONSOLE = $(PHP) bin/console $(SFY_ANSI)
-SWAGGER = vendor/bin/swagger
 PHPUNIT = vendor/bin/phpunit
 
 .DEFAULT_GOAL := help
@@ -22,18 +19,6 @@ endif
 build: ## builds the application
 	@echo $(ENV)
 	$(MAKE) composer_install
-	$(APP_CONSOLE) cache:clear --env=$(ENV)
-
-load_fixtures: ## load fixtures
-	$(APP_CONSOLE) doctrine:schema:create
-	$(APP_CONSOLE) doctrine:fixtures:load --no-interaction
-
-reset_fixtures: ## load fixtures after cleaning the database
-	$(APP_CONSOLE) doctrine:schema:drop --force --no-interaction
-	$(MAKE) load_fixtures
-
-build_swagger: ## build swagger files
-	$(SWAGGER) --exclude vendor --output ../movies-api-client/swagger/swagger.json
 
 tests_phpunit: ## perform phpunit unit tests
 	$(PHPUNIT)

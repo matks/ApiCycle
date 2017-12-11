@@ -28,12 +28,12 @@ This will start a php webserver, you should now be able to browse http://127.0.0
 
 # Run tests
 
-## Functional tests
+## Controller tests
 
-Run Symfony functional tests using phpunit binary:
+Run Symfony Controller tests using phpunit binary:
 
 ```
-$  vendor/bin/phpunit
+$  make tests_phpunit
 ```
 
 # Swagger

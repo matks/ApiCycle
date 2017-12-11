@@ -1,5 +1,5 @@
 {
-    "name": "matks/ApiCycle",
+    "name": "matks/movies-api",
     "license": "MIT",
     "type": "project",
     "autoload": {

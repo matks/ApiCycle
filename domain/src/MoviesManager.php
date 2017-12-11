@@ -2,7 +2,6 @@
 
 namespace ApiCycle\Domain;
 
-use ApiCycle\Domain\Movie;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -20,7 +19,7 @@ class MoviesManager
     private $validator;
 
     /**
-     * @param ManagerRegistry    $doctrine
+     * @param ManagerRegistry $doctrine
      * @param ValidatorInterface $validator
      */
     public function __construct(ManagerRegistry $doctrine, ValidatorInterface $validator)
@@ -87,7 +86,7 @@ class MoviesManager
         $errorMessages = [];
 
         foreach ($list as $violation) {
-            $errorMessages[] = $violation->getPropertyPath().' : '.$violation->getMessage();
+            $errorMessages[] = $violation->getPropertyPath() . ' : ' . $violation->getMessage();
         }
 
         return $errorMessages;
