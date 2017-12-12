@@ -44,13 +44,13 @@ class DefaultResource extends Resource
     /**
      * Create a movie
      *
-     * @param \ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody $data 
+     * @param \ApiCycle\Generated\ApiMoviesClient\Model\MoviesPostBody $data 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\ApiCycle\Generated\ApiMoviesClient\Model\SuccessResponse|\ApiCycle\Generated\ApiMoviesClient\Model\BadQueryResponse
      */
-    public function createMovie(\ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody $data, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createMovie(\ApiCycle\Generated\ApiMoviesClient\Model\MoviesPostBody $data, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/v1/movies';

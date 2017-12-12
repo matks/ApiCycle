@@ -14,12 +14,11 @@
     "silex/silex": "~2.0",
     "symfony/yaml": "^3.1",
     "knplabs/console-service-provider": "^2.0",
-    "matks/open-api": "1.3.1",
-    "jane/openapi-runtime": "^1.0",
     "guzzlehttp/psr7": "^1.4",
     "php-http/message": "^1.5",
     "php-http/guzzle6-adapter": "^1.1",
-    "behat/behat": "3.2"
+    "behat/behat": "3.2",
+    "jane/open-api": "^3.0@dev"
   },
   "repositories": [
     {

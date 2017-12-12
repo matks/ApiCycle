@@ -17,6 +17,10 @@ else
 	$(PHP) composer.phar install
 endif
 
+build: ## builds the application
+	@echo $(ENV)
+	$(MAKE) composer_install
+
 generate_api_client: ## generate API Client classes
 	$(JANE) generate swagger/swagger.json 'ApiCycle\Generated\ApiMoviesClient' generated/
 

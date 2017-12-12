@@ -10,20 +10,20 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class MoviesBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class MoviesPostBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'ApiCycle\\Generated\\ApiMoviesClient\\Model\\MoviesBody') {
+        if ($type !== 'ApiCycle\\Generated\\ApiMoviesClient\\Model\\MoviesPostBody') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody) {
+        if ($data instanceof \ApiCycle\Generated\ApiMoviesClient\Model\MoviesPostBody) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class MoviesBodyNormalizer implements DenormalizerInterface, NormalizerInterface
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody();
+        $object = new \ApiCycle\Generated\ApiMoviesClient\Model\MoviesPostBody();
         if (property_exists($data, 'name')) {
             $object->setName($data->{'name'});
         }

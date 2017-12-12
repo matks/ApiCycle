@@ -13,7 +13,7 @@ class NormalizerFactory
         $normalizers[] = new MovieDTONormalizer();
         $normalizers[] = new MoviesViewDTONormalizer();
         $normalizers[] = new SuccessResponseNormalizer();
-        $normalizers[] = new MoviesBodyNormalizer();
+        $normalizers[] = new MoviesPostBodyNormalizer();
         return $normalizers;
     }
 }

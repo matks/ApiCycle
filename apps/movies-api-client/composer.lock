@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b18152d5584267c0a3c4d67db7f55e8",
+    "content-hash": "dcf594ea88d56001fc9ae9c78cf981ea",
     "packages": [
         {
             "name": "behat/behat",
@@ -540,35 +540,38 @@
         },
         {
             "name": "jane/jane",
-            "version": "v1.5.1",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janephp/jane.git",
-                "reference": "991e095881b570b010cd3a3e8c78ec80903238ee"
+                "reference": "8db5bd9cca1d8f0ba0780f0bbe22e8bc946267df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janephp/jane/zipball/991e095881b570b010cd3a3e8c78ec80903238ee",
-                "reference": "991e095881b570b010cd3a3e8c78ec80903238ee",
+                "url": "https://api.github.com/repos/janephp/jane/zipball/8db5bd9cca1d8f0ba0780f0bbe22e8bc946267df",
+                "reference": "8db5bd9cca1d8f0ba0780f0bbe22e8bc946267df",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^1.0",
-                "jane/runtime": "^1.0",
-                "nikic/php-parser": "^1.4|^2.0",
-                "symfony/console": "^2.3|^3.0",
-                "symfony/options-resolver": "^2.7.2|^3.1",
-                "symfony/property-access": "^2.3|^3.0"
+                "jane/runtime": "^2.0",
+                "nikic/php-parser": "^3.0",
+                "php": ">=5.6",
+                "symfony/console": "^3.1",
+                "symfony/options-resolver": "^3.1",
+                "symfony/property-access": "^3.1"
             },
             "conflict": {
-                "fabpot/php-cs-fixer": "<2.0.0-alpha|>v2.0.0-alpha"
+                "friendsofphp/php-cs-fixer": "<2.0.0",
+                "symfony/serializer": "<3.1.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "v2.0.0-alpha",
-                "phpunit/phpunit": "^4.7|^5.5"
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpunit/phpunit": "^4.7|^5.5",
+                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
             },
             "suggest": {
-                "fabpot/php-cs-fixer": "Allow to automatically fix cs on generated code for better visualisation"
+                "friendsofphp/php-cs-fixer": "Allow to automatically fix cs on generated code for better visualisation"
             },
             "bin": [
                 "bin/jane"
@@ -595,28 +598,96 @@
                 }
             ],
             "description": "Generate a serializable / deserializable object model given a json schema",
-            "time": "2017-06-30T18:45:29+00:00"
+            "time": "2017-10-22T00:23:14+00:00"
         },
         {
-            "name": "jane/openapi-runtime",
-            "version": "v1.0.0",
+            "name": "jane/open-api",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/janephp/openapi-runtime.git",
-                "reference": "1ee03abfa7d6ed00e4b025b20bdb220ea15770e9"
+                "url": "https://github.com/janephp/openapi.git",
+                "reference": "8cee8f2b9e41e4896aa1b33f1e853f21fa3ddc7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janephp/openapi-runtime/zipball/1ee03abfa7d6ed00e4b025b20bdb220ea15770e9",
-                "reference": "1ee03abfa7d6ed00e4b025b20bdb220ea15770e9",
+                "url": "https://api.github.com/repos/janephp/openapi/zipball/8cee8f2b9e41e4896aa1b33f1e853f21fa3ddc7b",
+                "reference": "8cee8f2b9e41e4896aa1b33f1e853f21fa3ddc7b",
                 "shasum": ""
             },
             "require": {
-                "jane/runtime": "^1.0",
+                "doctrine/inflector": "^1.0",
+                "fitbug/symfony-yaml-serializer-encoder-decoder": "^0.1.1",
+                "jane/jane": "^3.1.1",
+                "jane/openapi-runtime": "^2.0",
+                "jane/runtime": "^2.1",
+                "nikic/php-parser": "^3.0",
+                "php": ">=5.6",
+                "symfony/console": "^3.1",
+                "symfony/yaml": "^3.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "php-jsonpointer/php-jsonpointer": "^3.0.2",
+                "phpunit/phpunit": "^4.7",
+                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+            },
+            "suggest": {
+                "friendsofphp/php-cs-fixer": "To have a nice formatting of the generated files"
+            },
+            "bin": [
+                "bin/jane-openapi"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Joli\\Jane\\OpenApi\\Model\\": "generated/Model/",
+                    "Joli\\Jane\\OpenApi\\Normalizer\\": "generated/Normalizer/",
+                    "Joli\\Jane\\OpenApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joel Wurtz",
+                    "email": "jwurtz@jolicode.com"
+                }
+            ],
+            "description": "Generate a PHP Client API (PSR7 compatible) given a OpenApi (Swagger) specification",
+            "keywords": [
+                "jane",
+                "openapi",
+                "swagger"
+            ],
+            "time": "2017-11-08T13:02:33+00:00"
+        },
+        {
+            "name": "jane/openapi-runtime",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/janephp/openapi-runtime.git",
+                "reference": "4fd799c0f0e486c7a19fe007da9853b19ea31154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/janephp/openapi-runtime/zipball/4fd799c0f0e486c7a19fe007da9853b19ea31154",
+                "reference": "4fd799c0f0e486c7a19fe007da9853b19ea31154",
+                "shasum": ""
+            },
+            "require": {
+                "jane/runtime": "^2.0",
                 "php-http/client-common": "^1.1",
                 "php-http/httplug": "^1.0",
                 "php-http/message-factory": "^1.0.2",
-                "symfony/options-resolver": "^2.7|^3.1"
+                "symfony/options-resolver": "^3.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.7|^5.5"
@@ -638,27 +709,31 @@
                 }
             ],
             "description": "Jane OpenAPI Runtime Library, dependencies and utility class for a library generated by jane/openapi",
-            "time": "2016-09-01T15:57:08+00:00"
+            "time": "2017-07-12T19:43:15+00:00"
         },
         {
             "name": "jane/runtime",
-            "version": "v1.0.0",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janephp/runtime.git",
-                "reference": "949ddd8f28ed3a697ff2bdc23491be92fd76d6ba"
+                "reference": "5bdff5d9097d2d60bf5565ac8122be459be9b7ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janephp/runtime/zipball/949ddd8f28ed3a697ff2bdc23491be92fd76d6ba",
-                "reference": "949ddd8f28ed3a697ff2bdc23491be92fd76d6ba",
+                "url": "https://api.github.com/repos/janephp/runtime/zipball/5bdff5d9097d2d60bf5565ac8122be459be9b7ec",
+                "reference": "5bdff5d9097d2d60bf5565ac8122be459be9b7ec",
                 "shasum": ""
             },
             "require": {
-                "symfony/serializer": "^2.3|^3.0"
+                "league/uri": "^4.2",
+                "php": "^7.0",
+                "php-jsonpointer/php-jsonpointer": "^3.0",
+                "symfony/serializer": "^3.1",
+                "symfony/yaml": "^3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.5"
+                "phpunit/phpunit": "^4.7|^5.5"
             },
             "type": "library",
             "autoload": {
@@ -674,10 +749,78 @@
                 {
                     "name": "Joel Wurtz",
                     "email": "jwurtz@jolicode.com"
+                },
+                {
+                    "name": "JoliCode",
+                    "email": "coucou@jolicode.com"
                 }
             ],
             "description": "Jane runtime Library",
-            "time": "2016-08-31T15:38:54+00:00"
+            "time": "2017-07-13T20:19:22+00:00"
+        },
+        {
+            "name": "jeremykendall/php-domain-parser",
+            "version": "4.0.3-alpha",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykendall/php-domain-parser.git",
+                "reference": "026a459bb2d32b0352731b5cb525f2c1d2b9d673"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykendall/php-domain-parser/zipball/026a459bb2d32b0352731b5cb525f2c1d2b9d673",
+                "reference": "026a459bb2d32b0352731b5cb525f2c1d2b9d673",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.11",
+                "jeremykendall/debug-die": "0.0.1.*",
+                "mikey179/vfsstream": "~1.6",
+                "phing/phing": "^2.13",
+                "phpunit/phpunit": "~4.8"
+            },
+            "bin": [
+                "bin/parse",
+                "bin/update-psl"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pdp\\": "src/"
+                },
+                "files": [
+                    "src/pdp-parse-url.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Kendall",
+                    "homepage": "http://about.me/jeremykendall",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/jeremykendall/php-domain-parser/graphs/contributors"
+                }
+            ],
+            "description": "Public Suffix List based URL parsing implemented in PHP.",
+            "homepage": "https://github.com/jeremykendall/php-domain-parser",
+            "keywords": [
+                "Public Suffix List",
+                "domain parsing",
+                "url parsing"
+            ],
+            "time": "2017-09-28T15:52:11+00:00"
         },
         {
             "name": "knplabs/console-service-provider",
@@ -736,99 +879,93 @@
             "time": "2017-07-18T01:00:21+00:00"
         },
         {
-            "name": "matks/open-api",
-            "version": "v1.3.1",
+            "name": "league/uri",
+            "version": "4.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/matks/openapi",
-                "reference": "d9b687bc7a32aff1e2cc367962a4efbfde126353"
+                "url": "https://github.com/thephpleague/uri.git",
+                "reference": "e7a31846c3f00c190bd2817a36e943c22a1e2512"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/uri/zipball/e7a31846c3f00c190bd2817a36e943c22a1e2512",
+                "reference": "e7a31846c3f00c190bd2817a36e943c22a1e2512",
+                "shasum": ""
             },
             "require": {
-                "doctrine/inflector": "^1.0",
-                "fitbug/symfony-yaml-serializer-encoder-decoder": "^0.1.1",
-                "jane/jane": "^1.5",
-                "jane/openapi-runtime": "^1.0",
-                "nikic/php-parser": "^1.4|^2.0",
-                "symfony/console": "^2.3|^3.0",
-                "symfony/yaml": "^2.8.2 | ^3.0"
-            },
-            "conflict": {
-                "friendsofphp/php-cs-fixer": "<2.0.0-alpha|>2.0.0-alpha"
+                "ext-fileinfo": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "jeremykendall/php-domain-parser": "4.0.3-alpha",
+                "php": ">=5.5.9",
+                "psr/http-message": "^1.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "v2.0.0-alpha",
-                "phpunit/phpunit": "^4.7",
-                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+                "friendsofphp/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.0",
+                "zendframework/zend-diactoros": "^1.3"
             },
-            "suggest": {
-                "friendsofphp/php-cs-fixer": "To have a nice formatting of the generated files"
-            },
-            "bin": [
-                "bin/jane-openapi"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1-dev"
+                    "dev-master": "4.2.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Joli\\Jane\\OpenApi\\Model\\": "generated/Model/",
-                    "Joli\\Jane\\OpenApi\\Normalizer\\": "generated/Normalizer/",
-                    "Joli\\Jane\\OpenApi\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Joli\\Jane\\OpenApi\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-ci": [
-                    "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml"
+                    "League\\Uri\\": "src"
+                },
+                "files": [
+                    "src/functions_include.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Joel Wurtz",
-                    "email": "jwurtz@jolicode.com"
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://nyamsprod.com"
                 }
             ],
-            "description": "Generate a PHP Client API (PSR7 compatible) given a OpenApi (Swagger) specification",
+            "description": "URI manipulation library",
+            "homepage": "http://uri.thephpleague.com",
             "keywords": [
-                "jane",
-                "openapi",
-                "swagger"
+                "data-uri",
+                "ftp",
+                "http",
+                "https",
+                "parse_url",
+                "psr-7",
+                "rfc3986",
+                "uri",
+                "url",
+                "ws"
             ],
-            "time": "2017-04-04T09:03:15+00:00"
+            "time": "2017-10-17T10:28:56+00:00"
         },
         {
             "name": "nikic/php-parser",
-            "version": "2.x-dev",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0"
+                "reference": "94ca9a7ab9a9eff7fa15a4a173a8735755ed30f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4dd659edadffdc2143e4753df655d866dbfeedf0",
-                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/94ca9a7ab9a9eff7fa15a4a173a8735755ed30f8",
+                "reference": "94ca9a7ab9a9eff7fa15a4a173a8735755ed30f8",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=5.4"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.0|~5.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -836,7 +973,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -858,7 +995,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-09-16T12:04:44+00:00"
+            "time": "2017-11-13T00:14:55+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1256,6 +1393,58 @@
                 "promise"
             ],
             "time": "2017-11-22T21:24:54+00:00"
+        },
+        {
+            "name": "php-jsonpointer/php-jsonpointer",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raphaelstolt/php-jsonpointer.git",
+                "reference": "4428f86c6f23846e9faa5a420c4ef14e485b3afb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raphaelstolt/php-jsonpointer/zipball/4428f86c6f23846e9faa5a420c4ef14e485b3afb",
+                "reference": "4428f86c6f23846e9faa5a420c4ef14e485b3afb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.11",
+                "phpunit/phpunit": "4.6.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Rs\\Json": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raphael Stolt",
+                    "email": "raphael.stolt@gmail.com",
+                    "homepage": "http://raphaelstolt.blogspot.com/"
+                }
+            ],
+            "description": "Implementation of JSON Pointer (http://tools.ietf.org/html/rfc6901)",
+            "homepage": "https://github.com/raphaelstolt/php-jsonpointer",
+            "keywords": [
+                "json",
+                "json pointer",
+                "json traversal"
+            ],
+            "time": "2016-08-29T08:51:01+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -1666,12 +1855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "8ef143bcb0986ec4fdbee6ce42cb55511ce2c447"
+                "reference": "231cf982dbb5e91070dda505240a528fec307eb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/8ef143bcb0986ec4fdbee6ce42cb55511ce2c447",
-                "reference": "8ef143bcb0986ec4fdbee6ce42cb55511ce2c447",
+                "url": "https://api.github.com/repos/symfony/console/zipball/231cf982dbb5e91070dda505240a528fec307eb7",
+                "reference": "231cf982dbb5e91070dda505240a528fec307eb7",
                 "shasum": ""
             },
             "require": {
@@ -1727,7 +1916,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-08T15:24:53+00:00"
+            "time": "2017-12-12T08:58:07+00:00"
         },
         {
             "name": "symfony/debug",
@@ -1791,12 +1980,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "48c15dd8bc64cf5c6fd1ace2cf3881e4179e8f0d"
+                "reference": "11ef58e84c55ca7f2e9321115433b3494d9b910a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/48c15dd8bc64cf5c6fd1ace2cf3881e4179e8f0d",
-                "reference": "48c15dd8bc64cf5c6fd1ace2cf3881e4179e8f0d",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/11ef58e84c55ca7f2e9321115433b3494d9b910a",
+                "reference": "11ef58e84c55ca7f2e9321115433b3494d9b910a",
                 "shasum": ""
             },
             "require": {
@@ -1804,7 +1993,7 @@
                 "psr/container": "^1.0"
             },
             "conflict": {
-                "symfony/config": "<3.3.1",
+                "symfony/config": "<3.3.7",
                 "symfony/finder": "<3.3",
                 "symfony/proxy-manager-bridge": "<3.4",
                 "symfony/yaml": "<3.4"
@@ -1854,7 +2043,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-08T15:24:53+00:00"
+            "time": "2017-12-11T22:06:16+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1974,12 +2163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "bc4d7b5a3007572a5c222f611fee30fbfcf1ddea"
+                "reference": "6bb26ee7a29b9f06dc5e62b71a5430f5637b3df0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/bc4d7b5a3007572a5c222f611fee30fbfcf1ddea",
-                "reference": "bc4d7b5a3007572a5c222f611fee30fbfcf1ddea",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6bb26ee7a29b9f06dc5e62b71a5430f5637b3df0",
+                "reference": "6bb26ee7a29b9f06dc5e62b71a5430f5637b3df0",
                 "shasum": ""
             },
             "require": {
@@ -2020,7 +2209,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-08T16:11:27+00:00"
+            "time": "2017-12-11T22:06:16+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -2028,12 +2217,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "86fe15ae7c66e1d37c7809f6d349575845d59611"
+                "reference": "c35ad92d01dbc62bf615bb79530dba9855550ec4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/86fe15ae7c66e1d37c7809f6d349575845d59611",
-                "reference": "86fe15ae7c66e1d37c7809f6d349575845d59611",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/c35ad92d01dbc62bf615bb79530dba9855550ec4",
+                "reference": "c35ad92d01dbc62bf615bb79530dba9855550ec4",
                 "shasum": ""
             },
             "require": {
@@ -2108,7 +2297,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-08T15:24:53+00:00"
+            "time": "2017-12-12T09:23:32+00:00"
         },
         {
             "name": "symfony/inflector",
@@ -2569,12 +2758,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "e05b0a5996ad7a35ba3a19ffad8b72c9daa64dfa"
+                "reference": "4c5d5582baf2829751a5207659329c1f52eedeb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/e05b0a5996ad7a35ba3a19ffad8b72c9daa64dfa",
-                "reference": "e05b0a5996ad7a35ba3a19ffad8b72c9daa64dfa",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/4c5d5582baf2829751a5207659329c1f52eedeb6",
+                "reference": "4c5d5582baf2829751a5207659329c1f52eedeb6",
                 "shasum": ""
             },
             "require": {
@@ -2629,7 +2818,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-27T14:23:00+00:00"
+            "time": "2017-12-12T08:27:14+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2637,12 +2826,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "5009c3ee3388332f667c9ce37cb1712656f5d734"
+                "reference": "afe0cd38486505c9703707707d91450cfc1bd536"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/5009c3ee3388332f667c9ce37cb1712656f5d734",
-                "reference": "5009c3ee3388332f667c9ce37cb1712656f5d734",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/afe0cd38486505c9703707707d91450cfc1bd536",
+                "reference": "afe0cd38486505c9703707707d91450cfc1bd536",
                 "shasum": ""
             },
             "require": {
@@ -2687,13 +2876,15 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-12-08T15:26:26+00:00"
+            "time": "2017-12-11T20:38:23+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "jane/open-api": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

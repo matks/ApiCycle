@@ -4,7 +4,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Http\Client\Exception\NetworkException;
 use Http\Client\Exception\HttpException;
-use ApiCycle\Generated\ApiMoviesClient\Model\MoviesBody;
+use ApiCycle\Generated\ApiMoviesClient\Model\MoviesPostBody;
 use ApiCycle\ApiMoviesTest\Exception\CannotConnectException;
 
 class FeatureContext implements Context
@@ -71,7 +71,7 @@ class FeatureContext implements Context
      */
     public function createMovie($name)
     {
-        $body = new MoviesBody();
+        $body = new MoviesPostBody();
         $body->setName($name);
 
         try {

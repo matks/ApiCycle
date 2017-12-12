@@ -2,7 +2,7 @@
 
 namespace ApiCycle\Generated\ApiMoviesClient\Model;
 
-class MoviesBody
+class MoviesPostBody
 {
     /**
      * @var string
