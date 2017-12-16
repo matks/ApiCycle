@@ -5,8 +5,8 @@ Demo project for ["Use Swagger to document a Symfony API"](https://dev.to/mathie
 
 # Apps
 
-- [Movies Api](https://github.com/matks/ApiCycle/blob/master/apps/movies-api\README.md)
-- [Movies Api Client](https://github.com/matks/ApiCycle/blob/master/apps/movies-api-client\README.md)
+- [Movies Api](https://github.com/matks/ApiCycle/blob/master/apps/movies-api/README.md)
+- [Movies Api Client](https://github.com/matks/ApiCycle/blob/master/apps/movies-api-client/README.md)
 
 
 Movies API is the Symfony app which is the topic of the blog post.
