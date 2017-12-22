@@ -152,7 +152,7 @@ class MoviesController extends FOSRestController
         $movie = $movieRepository->findOneById($movieId);
 
         if (null === $movie) {
-            throw new \InvalidArgumentException(sprintf("Cannot find movie %d", $movieId));
+            throw new \InvalidArgumentException(sprintf('Cannot find movie %d', $movieId));
         }
 
         $result = $manager->deleteMovie($movie);

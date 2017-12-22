@@ -24,7 +24,6 @@ class MovieTest extends PHPUnit_Framework_TestCase
         $movie->setName('Spiderman 2');
 
         $this->assertEquals('Spiderman 2', $movie->getName());
-
     }
 
     public function testDelete()

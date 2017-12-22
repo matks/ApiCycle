@@ -2,8 +2,8 @@
 
 namespace ApiCycle\Domain;
 
-use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 

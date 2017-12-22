@@ -33,7 +33,6 @@ class MovieManagerTest extends PHPUnit_Framework_TestCase
 
         $manager = new MoviesManager($doctrineMock, $validatorMock);
 
-
         $entityManagerMock->expects($this->once())
             ->method('persist');
         $entityManagerMock->expects($this->once())

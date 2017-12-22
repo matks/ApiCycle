@@ -3,7 +3,7 @@
 namespace ApiCycle\Domain\Tests;
 
 /**
- * Util shortcuts for tests
+ * Util shortcuts for tests.
  */
 trait TestUtils
 {
@@ -15,5 +15,4 @@ trait TestUtils
 
         return $mock;
     }
-
 }

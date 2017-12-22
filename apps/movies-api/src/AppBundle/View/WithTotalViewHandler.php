@@ -31,9 +31,9 @@ class WithTotalViewHandler
 
     /**
      * @param ViewHandler $viewHandler
-     * @param View $view
-     * @param Request $request
-     * @param string $format
+     * @param View        $view
+     * @param Request     $request
+     * @param string      $format
      *
      * @return JsonResponse
      */

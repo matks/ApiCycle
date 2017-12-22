@@ -46,8 +46,8 @@ class MoviesViewDTO
     public $data;
 
     /**
-     * @param int $total
-     * @param int $count
+     * @param int     $total
+     * @param int     $count
      * @param Movie[] $data
      */
     public function __construct($total, $count, array $data)

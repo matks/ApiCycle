@@ -2,7 +2,6 @@
 
 namespace ApiCycle\Domain\Tests;
 
-use ApiCycle\Domain\Movie;
 use ApiCycle\Domain\ParametersConfigHandler;
 use PHPUnit_Framework_TestCase;
 

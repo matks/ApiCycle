@@ -19,5 +19,4 @@ class PaginatedCollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($collection->total, 50);
         $this->assertEquals($collection->count, 3);
     }
-
 }
