@@ -2,17 +2,17 @@
 
 namespace ApiCycle\ApiMovies\AppBundle\Controller;
 
-use ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse;
 use ApiCycle\ApiMovies\AppBundle\Controller\DTO\EmptyResponse;
-use ApiCycle\Domain\MoviesManager;
+use ApiCycle\ApiMovies\AppBundle\Controller\DTO\SuccessResponse;
 use ApiCycle\Domain\Movie;
 use ApiCycle\Domain\MovieRepository;
+use ApiCycle\Domain\MoviesManager;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
+use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Swagger\Annotations as SWG;
 
 class MoviesController extends FOSRestController
 {
