@@ -19,11 +19,5 @@
     "php-http/guzzle6-adapter": "^1.1",
     "behat/behat": "3.2",
     "jane/open-api": "^3.0@dev"
-  },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/matks/openapi"
-    }
-  ]
+  }
 }
