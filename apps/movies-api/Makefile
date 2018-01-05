@@ -25,7 +25,6 @@ ifeq ($(ENV),test)
 	cp app/config/parameters.yml.dist app/config/parameters.yml
 endif
 	$(MAKE) composer_install
-	$(APP_CONSOLE) cache:clear --env=$(ENV)
 
 load_fixtures: ## load fixtures
 	$(APP_CONSOLE) doctrine:schema:create
