@@ -13,5 +13,5 @@ jobs:
       - run: cd domain && make build
       - run: cd domain && make tests_phpunit
       # movies-api unit tests
-      - run: cd apps/movies-api && make build
+      - run: cd apps/movies-api && make build ENV=test
       - run: cd apps/movies-api && make tests_phpunit

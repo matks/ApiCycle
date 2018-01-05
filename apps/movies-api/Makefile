@@ -21,6 +21,9 @@ endif
 
 build: ## builds the application
 	@echo $(ENV)
+ifeq ($(ENV),test)
+	cp app/config/parameters.yml.dist app/config/parameters.yml
+endif
 	$(MAKE) composer_install
 	$(APP_CONSOLE) cache:clear --env=$(ENV)
 
