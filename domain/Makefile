@@ -21,4 +21,4 @@ build: ## builds the application
 	$(MAKE) composer_install
 
 tests_phpunit: ## perform phpunit unit tests
-	$(PHPUNIT)
+	$(PHPUNIT) tests
