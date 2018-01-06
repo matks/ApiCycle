@@ -19,7 +19,8 @@ jobs:
       - run:
           name: run symfony webserver
           command: |
-            cd apps/movies-api-client && php bin/console server:run --env=test
+            cd apps/movies-api && php bin/console server:run --env=test
           background: true
       # movies-api-client acceptance tests
+      - run: cd apps/movies-api-client && make build ENV=test
       - run: cd apps/movies-api-client && make tests_behat ENV=test
