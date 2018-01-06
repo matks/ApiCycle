@@ -12,7 +12,7 @@ jobs:
       - run:
           name: install ext-intl
           command: |
-          sudo apt-get install php7.1 php7.1-intl
+            sudo apt-get install php7.1 php7.1-intl
       # domain unit tests
       - run: cd domain && make build
       - run: cd domain && make tests_phpunit
