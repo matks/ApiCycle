@@ -15,8 +15,11 @@ jobs:
       # movies-api unit tests
       - run: cd apps/movies-api && make build ENV=test
       - run: cd apps/movies-api && make tests_phpunit
-      # start php web-server for acceptance tests
-      - run: cd apps/movies-api-client && php bin/console server:run --env=test
-                background: true
+      # start web-server for acceptance tests
+      - run:
+          name: run symfony webserver
+          command: |
+            cd apps/movies-api-client && php bin/console server:run --env=test
+          background: true
       # movies-api-client acceptance tests
       - run: cd apps/movies-api-client && make tests_behat ENV=test
