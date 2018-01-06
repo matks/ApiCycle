@@ -4,6 +4,5 @@
 # Symfony
 app/config/parameters.yml
 app/sqlite.db.cache
-bin
 vendor/
 var/
