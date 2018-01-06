@@ -25,8 +25,8 @@ generate_api_client: ## generate API Client classes
 	$(JANE) generate swagger/swagger.json 'ApiCycle\Generated\ApiMoviesClient' generated/
 
 tests_behat: ## perform behat functional tests
-	$(MAKE) reset_remote_fixtures
+	$(MAKE) reset_remote_fixtures ENV=$(ENV)
 	$(BEHAT)
 
 reset_remote_fixtures: ## reset Movies API fixtures in movies-api project
-	$(MAKE) -C ../movies-api reset_fixtures
+	$(MAKE) -C ../movies-api reset_fixtures ENV=$(ENV)

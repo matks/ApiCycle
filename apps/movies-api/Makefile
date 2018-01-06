@@ -27,11 +27,11 @@ endif
 	$(MAKE) composer_install
 
 load_fixtures: ## load fixtures
-	$(APP_CONSOLE) doctrine:schema:create
-	$(APP_CONSOLE) doctrine:fixtures:load --no-interaction
+	$(APP_CONSOLE) doctrine:schema:create --env=$(ENV)
+	$(APP_CONSOLE) doctrine:fixtures:load --no-interaction --env=$(ENV)
 
 reset_fixtures: ## load fixtures after cleaning the database
-	$(APP_CONSOLE) doctrine:schema:drop --force --no-interaction
+	$(APP_CONSOLE) doctrine:schema:drop --force --no-interaction --env=$(ENV)
 	$(MAKE) load_fixtures
 
 build_swagger: ## build swagger files
