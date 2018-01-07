@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.1-cli-browsers
+      - image: circleci/php:7.0-cli-browsers
 
     working_directory: ~/repo
 
