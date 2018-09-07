@@ -5,3 +5,4 @@
 app/config/parameters.yml
 vendor/
 var/
+app/bootstrap.php.cache
