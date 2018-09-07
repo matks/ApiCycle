@@ -5,13 +5,15 @@ Symfony API to handle movies CRUD
 
 # Install
 
-Use makefile
+Create an empty database in your mysql instance.
+
+Then use the makefile:
 
 ```
 $ make build
 ```
 
-Configure `app/config/parameters.yml` to enable access to your database
+Composer will ask you to provide the values to be inserted into `app/config/parameters.yml` to enable access to your mysql database.
 
 Then create schema and load fixtures:
 
@@ -24,7 +26,7 @@ Check your install is correct by running the following command:
 $ php bin/console server:run
 ```
 
-This will start a php webserver, you should now be able to browse http://127.0.0.1:8000/ .
+This will start a php webserver, you should now be able to browse the API. For example open URL `http://127.0.0.1:8000/v1/movies`, this should return 3 of the fixture movies.
 
 # Run tests
 

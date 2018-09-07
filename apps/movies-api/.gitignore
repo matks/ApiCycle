@@ -3,6 +3,6 @@
 
 # Symfony
 app/config/parameters.yml
-bin
 vendor/
 var/
+app/bootstrap.php.cache

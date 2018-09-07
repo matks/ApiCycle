@@ -53,13 +53,6 @@ doctrine:
                 prefix: 'ApiCycle\Domain'
                 alias: Domain
 
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
-
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
