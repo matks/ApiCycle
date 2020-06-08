@@ -1,6 +1,8 @@
 ApiCycle
 ========
 
+test
+
 [![CircleCI](https://circleci.com/gh/matks/ApiCycle/tree/master.svg?style=svg)](https://circleci.com/gh/matks/ApiCycle/tree/master)
 
 Demo project for ["Use Swagger to document a Symfony API"](https://dev.to/mathieuks/use-swagger-to-document-a-symfony-api-790) blog post
